@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JWM>
+<StartupCommand>xfce4-power-manager</StartupCommand>
+<StartupCommand>owncloud</StartupCommand>
+<StartupCommand>nm-applet --sm-disable</StartupCommand>
+<StartupCommand>compton</StartupCommand>
+
+<!-- <StartupCommand>tint2</StartupCommand> -->
+<!-- <StartupCommand>plank</StartupCommand> --> 
+<!-- <StartupCommand>conky</StartupCommand> -->
+<!--  <StartupCommand>tint2 -c
+/home/brouq/.config/tint2/tint2-systray</StartupCommand> -->
+<!-- <StartupCommand>tint2 -c /home/brouq/.config/tint2/tint2-launcher</StartupCommand>
+-->
+
+    <Group>
+        <Option>aerosnap</Option>
+    </Group>
+
+<WindowStyle>
+    <Font>Ubuntu Monotype-6:bold</Font>
+    <Width>2</Width>
+    <Height>2</Height>
+    <Corner>0</Corner>
+    <Foreground>#FFFFFF</Foreground>
+    <Background>#000000</Background>
+    <Outline>#555555</Outline>
+    <Opacity>0.9</Opacity>
+
+    <Active>
+        <Foreground>#FFFFFF</Foreground>
+        <Background>#555555</Background>
+        <Outline>#999999</Outline>
+        <Opacity>1.0</Opacity>
+    </Active>
+</WindowStyle>
+
+<Desktops width="3" height="1">
+	<Background type="solid">#56614A</Background>
+	<!-- <Background type="image">/usr/share/background.jpg</Background> -->
+	<!-- <Background type="scale">/usr/share/background.jpg</Background> -->
+
+<Desktop name="A">
+	<!-- <Background type="image">/usr/share/background.jpg</Background> -->
+	<!-- <Background type="solid">#8B7E66</Background> --> <!-- #778899 #8b7e66 #718A5D #1C0D27-->
+</Desktop>
+
+<Desktop name="B">
+	<Background type="solid">#444333</Background>
+</Desktop>
+
+<Desktop name="C">
+        <!-- 514057 433e6d -->
+	<Background type="solid">#514057</Background>
+</Desktop>
+
+</Desktops>
+
+
+<!-- TRAY -->
+
+<Tray x="0" y="0" width="0" height="30" autohide="off"
+halign="left">
+    <!-- <Pager labeled="false" /> -->
+    <!-- <Spacer width="5" />
+    <Swallow name="batt">/home/brouq/batt.sh</Swallow> -->
+    <Spacer width="5" />
+    <Clock format="%G-%m-%d | %H:%M"></Clock>
+    <Spacer width="5" />
+    <TaskList maxwidth="0" labeled="false" height="0" />
+    <Spacer width="5" />
+    <Dock />
+</Tray>
+
+<TrayStyle group="false" list="all">
+    <Font>Ubuntu Monotype-9</Font>
+    <Foreground>#FFFFFF</Foreground>
+    <Background>#000000</Background>
+    <Outline>#555555</Outline>
+    <Opacity>0.8</Opacity>
+</TrayStyle>
+
+<TaskListStyle>
+    <Outline>#FFFFFF</Outline>
+    <Active>
+        <Background>#333333</Background>
+    </Active>
+</TaskListStyle>
+
+<PagerStyle>
+    <Outline>#333333</Outline>
+    <Foreground>#555555</Foreground>
+    <Background>#000000</Background>
+    <Text>#FFFFFF</Text>
+    <Active>
+        <Foreground>#333333</Foreground>
+        <Background>#555555</Background>
+    </Active>
+</PagerStyle>
+
+
+<DoubleClickSpeed>400</DoubleClickSpeed>
+<DoubleClickDelta>2</DoubleClickDelta>
+<FocusModel>click</FocusModel>
+<MoveMode>opaque</MoveMode>
+<ResizeMode>opaque</ResizeMode> 
+
+
+<Key key="Up">up</Key>
+<Key key="Down">down</Key>
+<Key key="Right">right</Key>
+<Key key="Left">left</Key>
+<Key key="Return">select</Key>
+<Key key="Escape">escape</Key>
+<Key key="Print">exec: scrot</Key>
+
+<Key mask="C" key="Up">exec: pactl set-sink-mute 1 false; pactl set-sink-volume 1 +3%</Key>
+<Key mask="C" key="Down">exec: pactl set-sink-mute 1 false; pactl set-sink-volume 1 -3%</Key>
+<Key mask="C" key="Left">exec: xbacklight -dec 5</Key>
+<Key mask="C" key="Right">exec: xbacklight -inc 5</Key>
+
+<Key mask="CS" key="Up">exec: pactl set-sink-mute 1 false</Key>
+<Key mask="CS" key="Down">exec: pactl set-sink-mute 1 true</Key>
+
+<Key mask="CS" key="Left">exec: xbacklight -set 0</Key>
+<Key mask="CS" key="Right">exec: xbacklight -set 100</Key>
+
+<Key mask="CA" key="t">exec: gnome-terminal</Key>
+<Key mask="CA" key="b">exec: firefox --private-window</Key>
+<Key mask="CA" key="f">exec: gmrun</Key>
+<Key mask="CA" key="m">exec: thunar</Key>
+<Key mask="CA" key="e">exec: gnome-text-editor</Key>
+
+<Key mask="CSA" key="l">exec: xrandr --output eDP1 --off</Key>
+<Key mask="CA" key="l">exec: xrandr --output eDP1 --auto</Key>
+
+<Key mask="CSA" key="h">exec: xrandr --output HDMI2 --off</Key>
+<Key mask="CA" key="h">exec: xrandr --output HDMI2 --auto</Key>
+
+<Key mask="CA" key="Delete">exec: systemctl reboot</Key>
+
+<Key mask="CSA" key="r">exec: jwm -restart</Key>
+<Key mask="CSA" key="q">exec: jwm -exit</Key>
+
+
+<Key mask="A" key="Right">exec: 
+	SW=$(($(xwininfo -root|awk '$1=="Width:"{print $2}')/2))
+	wmctrl -r :ACTIVE: -b remove,maximized_vert
+	wmctrl -r :ACTIVE: -e 0,$SW,-1,$SW,-1 
+	wmctrl -r :ACTIVE: -b add,maximized_vert </Key>
+
+<Key mask="A" key="Left">exec:
+	SW=$(($(xwininfo -root|awk '$1=="Width:"{print $2}')/2))
+	wmctrl -r :ACTIVE: -b remove,maximized_vert
+	wmctrl -r :ACTIVE: -e 0,0,-1,$SW,-1
+	wmctrl -r :ACTIVE: -b add,maximized_vert </Key>
+
+<Key mask="A" key="Up">maximize</Key>
+<Key mask="A" key="Down">minimize</Key>
+<Key mask="A" key="Tab">next</Key>
+<Key mask="A" key="#">desktop#</Key>
+
+
+<Key mask="A" key="q">close</Key>
+
+<Key mask="CA" key="Tab">prev</Key>
+
+ 
+<Key mask="CA" key="Right">sendr</Key>
+<Key mask="CA" key="Left">sendr</Key>
+
+
+<!--
+<Key mask="A4" key="Right">rdesktop</Key>
+<Key mask="A4" key="Left">ldesktop</Key>
+
+key "Super+KP_Substract" amixer -q set PCM 5- unmute # lower volume
+key "Super+KP_Add" amixer -q  set PCM 5+ unmute #increase volume
+--> 
+
+</JWM>
